@@ -22,17 +22,7 @@ makeTable <- function(df,
                                      columns=cols)
   table<-synapseClient::Table(schema,
                               fileHandleId)
-  if(!is.null(annos)){
-    synapseClient::synSetAnnotation(table)<-annos
-  }
-  if(!is.null(proven)){
-    table<-synapseClient::synStore(table,
-                                   retrieveData=TRUE,
-                                   used=proven$used,
-                                   executed=proven$executed)
-  }else{
-    table<-synapseClient::synStore(table,
-                                   retrieveData=TRUE)
-  }
+  table<-synapseClient::synStore(table,
+                              retrieveData=TRUE)
   return(table)
 }
